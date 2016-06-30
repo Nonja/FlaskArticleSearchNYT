@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>NYTArticleSearch</title>
+	<script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
+	<link rel="stylesheet" href="/static/css/hummustyle.css" type="text/css">
+
+</head>
+
+<body>
+	<div>
+		<h1>Article search from The New York Times</h1>
+		<p>Enter search query</p>
+	</div>
+
+	<form action="/searchrequest" method="GET" role="form" id="submitform">
+		<input type="date" id="begindate" name="begindate" value="{{ weekago }}" min="1851-09-18">
+		<input type="date" id="enddate" name="enddate" max="{{ currentdate }}"><br>
+
+		<script type="text/javascript">
+			//setting the default times
+			var weekago = new Date();
+			document.getElementById('begindate').valueAsDate = weekago.setDate(weekago.getDate() - 7)
+			document.getElementById('enddate').valueAsDate = new Date();
+		</script>
+
+		<input type="text" name="searchquery" id="searchquery" value="">
+		<input type="submit" name="submitsearch" id="submitsearch">
+	</form>
+
+	<div id ="queryresults">
+		<div id="resultcount"></div>
+		<div id="resultlist"></div>
+		<div id="resultpages"><p id="page"></p></div>
+		<form id="loadmore">
+			<input type="submit" name="Load more" value="Load more...">
+		</form>
+	</div>
+
+	<script type="text/javascript" src="/static/js/searchrequest.js"></script>
+
+</body>
+
+</html>
